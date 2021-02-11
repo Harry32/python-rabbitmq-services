@@ -1,6 +1,6 @@
 # Projeto iClinic
 
-O projeto foi criado com dois serviços em python utilizando django-rest. A comunicação entre eles foi utilizando o RabbitMQ e o banco de dados é o Postgresql. O docker-compose.yml está na raíz e pronto para subir todo o ambiente. A API opera na porta **8000**.
+O projeto foi criado com dois serviços em python utilizando django-rest. A comunicação entre eles foi utilizando o RabbitMQ e o banco de dados é o Postgresql. O docker-compose.yml está na raíz e pronto para subir todo o ambiente, o volume utilizado para o banco está apontando para uma pasta de volumes fora do projeto e **deve ser alterada se necessário**. A API opera na porta **8000**.
 
 ### Rotas
 Foram definidas 3 rotas para a API, segue abaixo:
