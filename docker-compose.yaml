@@ -1,0 +1,89 @@
+version: "3.7"
+
+services:
+  bd-servicos:
+    image: postgres
+    container_name: bd-servicos
+#    restart: always
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=db_consulta
+    ports:
+      - "3000:5432"
+    volumes:
+      - ../volumes/bd-servicos:/var/lib/postgresql/data
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 200M
+
+  rabbit-mq:
+    image: rabbitmq
+    container_name: rabbit-mq
+    hostname: rabbit-mq
+    restart: always
+    ports:
+      - "5672:5672"
+    deploy:
+      mode: replicated
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 200M
+
+  servico-consulta:
+    build: ./servico_consulta
+    container_name: servico-consulta
+#    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - bd-servicos
+    volumes:
+      - ./servico_consulta:/home/app/
+    command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py loaddata api/initial_data.json && python3 manage.py runserver 0.0.0.0:8000"
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 200M
+
+  servico-financeiro:
+    build: ./servico_financeiro
+    container_name: servico-financeiro
+#    restart: always
+    depends_on:
+      - bd-servicos
+      - rabbit-mq
+    volumes:
+      - ./servico_consulta:/home/app/
+    command: bash -c "python3 manage.py runrpcservice"
+    #command : bash -c "tail -f /dev/null"
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 200M

@@ -1,0 +1,72 @@
+[
+{
+    "model": "api.patient",
+    "pk": "1665ee98-a8e6-4f26-a7c9-c06f6dce3bc5",
+    "fields": {
+        "name": "Gabriel John Utterson"
+    }
+},
+{
+    "model": "api.patient",
+    "pk": "2d3925e5-89da-4826-b0ec-c453bbc45fb0",
+    "fields": {
+        "name": "Elizabeth Lavenza"
+    }
+},
+{
+    "model": "api.patient",
+    "pk": "53d65128-a361-4a47-973c-6ff7a27a859a",
+    "fields": {
+        "name": "Baudelaires"
+    }
+},
+{
+    "model": "api.patient",
+    "pk": "59149798-36b2-4c1d-b95e-92c47acf322c",
+    "fields": {
+        "name": "Mina Murray"
+    }
+},
+{
+    "model": "api.patient",
+    "pk": "ddf76c8b-ff45-4d9a-87c8-f0a3521bb183",
+    "fields": {
+        "name": "Enoch Drebber"
+    }
+},
+{
+    "model": "api.physician",
+    "pk": "27406f80-42c6-48f4-9d1a-abb4d898f6c9",
+    "fields": {
+        "name": "Dr. John H. Watson"
+    }
+},
+{
+    "model": "api.physician",
+    "pk": "796a25dd-06a7-48f7-870a-99c5ca564cd5",
+    "fields": {
+        "name": "Dr. Victor Frankenstein"
+    }
+},
+{
+    "model": "api.physician",
+    "pk": "96aea2e4-d652-4c17-a36f-554740657ab6",
+    "fields": {
+        "name": "Dr. Abraham Van Helsing"
+    }
+},
+{
+    "model": "api.physician",
+    "pk": "b07f1d14-621f-404f-9d75-16f6118134f3",
+    "fields": {
+        "name": "Dr. Montgomery Montgomery"
+    }
+},
+{
+    "model": "api.physician",
+    "pk": "dec81458-724a-4165-a40f-9398e3798a58",
+    "fields": {
+        "name": "Dr. Henry Jekyll"
+    }
+}
+]
